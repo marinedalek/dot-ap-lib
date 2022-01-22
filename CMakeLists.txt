@@ -7,3 +7,4 @@ project ("dot-ap-lib")
 
 # Include sub-projects.
 add_subdirectory ("dot-ap-lib")
+target_compile_features(dot-ap-lib PUBLIC cxx_std_20)
