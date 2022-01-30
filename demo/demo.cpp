@@ -5,7 +5,7 @@
 
 int main()
 {
-	auto alley = std::ifstream("C:\\GOG Games\\Under a Killing Moon\\ALLEY.AP", std::ios::binary); // MMMM Hardcoded paths
+	auto alley = std::ifstream("C:\\GOG Games\\Under a Killing Moon\\DMAP.LZ", std::ios::binary); // MMMM Hardcoded paths
 	if (!alley.is_open()) {
 		std::cerr << "Failed to open ALLEY.AP\n";
 		return 0;
