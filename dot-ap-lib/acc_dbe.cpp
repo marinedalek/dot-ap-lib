@@ -62,7 +62,7 @@ auto marinedalek::dotap::decompress_lzw(std::istream& stream, std::size_t uncomp
 			dictionary.back().push_back(temp_output.front());
 			std::copy(temp_output.begin(), temp_output.end(), std::back_inserter(output_buffer));
 			dictionary.emplace_back(temp_output);
-			if (dictionary.size() > uint16_t(1 << code_length)) {
+			if (dictionary.size() > uint16_t(char{ 1 } << code_length)) {
 				++code_length;
 			}
 		}

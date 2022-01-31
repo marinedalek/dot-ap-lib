@@ -36,7 +36,7 @@ T constexpr read_as(std::istream& stream)
 
 struct bit_reader {
 	int cached_bit_count{ 0 };
-	std::byte cached_byte;
+	std::byte cached_byte{ 0 };
 	template <std::integral T = uint16_t>
 	T read_bits(std::istream& stream, int const num_bits)
 	{

@@ -2,6 +2,8 @@
 #define DOT_AP_LIB_H
 
 #include "ap.h"
+#include "acc_dbe.h"
+#include "location_palette.h"
 #include "utility.h"
 #include <iostream>
 
