@@ -3,8 +3,12 @@
 
 #include "ap.h"
 #include "acc_dbe.h"
+#include "bic.h"
 #include "location_palette.h"
+#include "ptf.h"
 #include "utility.h"
+#include "wav.h"
+#include <bit>
 #include <iostream>
 
 namespace marinedalek::dotap {

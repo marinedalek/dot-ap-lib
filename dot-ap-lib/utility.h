@@ -16,13 +16,13 @@ T constexpr copy_blob_as(std::span<std::byte const> blob, std::size_t const offs
 	std::array<std::byte, extent> buffer;
 	// NOTE: comparison of endianness is used here rather than shifting values in 
 	//		 due to sub-optimal code generation on certain platforms
-	if constexpr (source_endianness == std::endian::native) {
-		std::copy(blob.begin() + offset, blob.begin() + offset + extent, buffer.begin());
+	std::copy(blob.begin() + offset, blob.begin() + offset + extent, buffer.begin());
+		if constexpr (source_endianness == std::endian::native) {
+		return std::bit_cast<T>(buffer);
 	}
 	else {
-		std::copy(blob.rend() - offset - extent, blob.rend() - offset, buffer.begin());
+		return std::byteswap(std::bit_cast<T>(buffer));
 	}
-	return std::bit_cast<T>(buffer);
 }
 
 template <std::integral T, std::endian source_endianness = std::endian::native>
@@ -31,7 +31,13 @@ T constexpr read_as(std::istream& stream)
 	auto constexpr extent = sizeof(T);
 	std::array<std::byte, extent> buffer;
 	stream.read(reinterpret_cast<char*>(buffer.data()), extent);
-	return copy_blob_as<T, source_endianness>(buffer);
+	//return copy_blob_as<T, source_endianness>(buffer);
+	if constexpr (source_endianness == std::endian::native) {
+		return std::bit_cast<T>(buffer);
+	}
+	else {
+		return std::byteswap(std::bit_cast<T>(buffer));
+	}
 }
 
 struct bit_reader {
